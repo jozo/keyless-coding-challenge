@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "keyless-coding-challenge"
+version = "0.1.0"
+description = ""
+authors = ["jozo <hi@jozo.io>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+fastapi = "^0.63.0"
+uvicorn = "^0.13.3"
+orjson = "^3.4.8"
+structlog = "^20.2.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.2"
+pytest-cov = "^2.11.1"
+requests = "^2.25.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
