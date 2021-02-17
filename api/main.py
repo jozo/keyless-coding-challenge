@@ -19,6 +19,11 @@ class EncryptionData(BaseModel):
     associated_data: Optional[str]
 
 
+@app.get("/api/health/", response_class=ORJSONResponse)
+async def api_health():
+    return {"health": "ok"}
+
+
 @app.post("/api/encrypt/", response_class=ORJSONResponse)
 async def api_encrypt(body: EncryptionData):
     """Encrypts provided data with AES-GCM. Data must be encoded in base64."""

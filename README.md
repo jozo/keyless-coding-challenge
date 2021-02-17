@@ -9,7 +9,6 @@ Docs: http://0.0.0.0:8000/docs
 - API versioning
 - rate limiting
 - Add CI (build image, run tests, scan security issues)
-- Add health check
 - Add tracing
 - Play with uvicorn config - e.g. number of workers
 - CORS
