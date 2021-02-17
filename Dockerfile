@@ -14,5 +14,8 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
 COPY ./api /app
 
+RUN useradd -m web && chown -R web:web $VIRTUAL_ENV /app
+USER web
+
 # Compile to start faster
 RUN python -m compileall /app
