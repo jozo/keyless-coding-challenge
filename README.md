@@ -5,13 +5,15 @@ API for encryption of input data with AES-GCM. Implemented with Python and FastA
 
 Docs: http://0.0.0.0:8000/docs
 
+
 ## Possible improvements
 - API versioning
 - rate limiting
 - Add CI (build image, run tests, scan security issues)
-- Add tracing
+- Add tracing, monitoring, Sentry...
 - Play with uvicorn config - e.g. number of workers
 - CORS
+
 
 ## Assignment
 Imagine that your first task once you’ll join the Keyless team will be to 

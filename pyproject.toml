@@ -13,11 +13,13 @@ orjson = "^3.4.8"
 structlog = "^20.2.0"
 cryptography = "^3.4.5"
 content-size-limit-asgi = "^0.1.5"
+requests = "^2.25.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.2"
 pytest-cov = "^2.11.1"
 requests = "^2.25.1"
+colorama = "^0.4.4"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
