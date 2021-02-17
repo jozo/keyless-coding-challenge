@@ -21,6 +21,7 @@ class EncryptionData(BaseModel):
 
 @app.post("/api/encrypt/", response_class=ORJSONResponse)
 async def api_encrypt(body: EncryptionData):
+    """Encrypts provided data with AES-GCM. Data must be encoded in base64."""
     data, associated_data = deserialize(body)
     ciphertext, key, nonce = encrypt(data, associated_data)
     return {
