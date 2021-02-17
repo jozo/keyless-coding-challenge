@@ -1,6 +1,13 @@
 # keyless-coding-challenge
 Coding challenge from Keyless.io
 
+## Possible improvements
+- API versioning
+- rate limiting
+- Add CI (build image, run tests, scan security issues)
+- Add health check
+- Add tracing
+- Play with uvicorn config - e.g. number of workers
 
 ## Assignment
 Imagine that your first task once you’ll join the Keyless team will be to 
