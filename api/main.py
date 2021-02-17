@@ -3,14 +3,16 @@ import os
 from base64 import b64decode, b64encode
 from typing import Optional
 
+from content_size_limit_asgi import ContentSizeLimitMiddleware
 from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import ORJSONResponse
 from pydantic import BaseModel
 
-from api.config import HOST, PORT
+from api.config import HOST, MAX_CONTENT_SIZE, PORT
 
 app = FastAPI()
+app.add_middleware(ContentSizeLimitMiddleware, max_content_size=MAX_CONTENT_SIZE)
 
 
 class CryptoData(BaseModel):
@@ -18,7 +20,18 @@ class CryptoData(BaseModel):
     associated_data: Optional[str]
 
 
-def validate(body: CryptoData):
+@app.post("/api/encrypt/", response_class=ORJSONResponse)
+async def api_encrypt(body: CryptoData):
+    data, associated_data = deserialize(body)
+    ciphertext, key, nonce = encrypt(data, associated_data)
+    return {
+        "ciphertext": b64encode(ciphertext),
+        "key": b64encode(key),
+        "nonce": b64encode(nonce),
+    }
+
+
+def deserialize(body: CryptoData):
     try:
         data = b64decode(body.data)
     except (binascii.Error, TypeError):
@@ -32,17 +45,6 @@ def validate(body: CryptoData):
         raise HTTPException(400, "associated-data must be base64 string")
 
     return data, associated_data
-
-
-@app.post("/api/encrypt/", response_class=ORJSONResponse)
-async def api_encrypt(body: CryptoData):
-    data, associated_data = validate(body)
-    ciphertext, key, nonce = encrypt(data, associated_data)
-    return {
-        "ciphertext": b64encode(ciphertext),
-        "key": b64encode(key),
-        "nonce": b64encode(nonce),
-    }
 
 
 def encrypt(data: bytes, associated_data: bytes):
