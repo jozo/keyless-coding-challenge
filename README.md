@@ -5,6 +5,18 @@ API for encryption of input data with AES-GCM. Implemented with Python and FastA
 
 Docs: http://0.0.0.0:8000/docs
 
+## How to run
+
+**Docker**
+```shell
+docker-compose up
+```
+
+**Poetry**
+```shell
+poetry install
+poetry run uvicorn api.main:app
+```
 
 ## Possible improvements
 - API versioning
