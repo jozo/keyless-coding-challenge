@@ -3,7 +3,7 @@ Coding challenge from Keyless.io
 
 API for encryption of input data with AES-GCM. Implemented with Python and FastAPI.
 
-Docs: http://0.0.0.0:8000/docs
+Docs (Swagger): http://0.0.0.0:8000/docs
 
 ## How to run
 
@@ -16,6 +16,23 @@ docker-compose up
 ```shell
 poetry install
 poetry run uvicorn api.main:app
+```
+
+### Example POST request
+POST http://0.0.0.0:8000/api/encrypt/
+```json
+{
+    "data": "YWhvag=="
+}
+```
+
+Output
+```json
+{
+    "ciphertext": "b8b2vT25fHSVbAGqBHeGhdevVAQ=",
+    "key": "9kyu5t7gRSmTFycUwcRtSZdIcfc4EcKK+KkzaO6oyC0=",
+    "nonce": "u2Ql2bWPFHzYqGNK"
+}
 ```
 
 ## Possible improvements
